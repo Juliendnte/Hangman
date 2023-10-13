@@ -4,10 +4,13 @@ import (
 	"fmt"
 )
 
-func Count(m string) {
+func Count(m string) string {
+	var guess string
 	for n := 0; n < len(m); n++ {
+		guess = "_ "
 		fmt.Printf("_ ")
 	}
+	return guess
 }
 
 func IsInWord(word, s string) bool { // on regarde si c'est dans le mot ou pas
@@ -19,8 +22,10 @@ func IsInWord(word, s string) bool { // on regarde si c'est dans le mot ou pas
 	return false
 }
 
-func AfficherLettre(mot, s string) {
+func AfficherLettre(mot, s, guess string) {
 	if IsInWord(mot, s) {
-
+		if IsInWord(guess, s) {
+			fmt.Println("Vous avez déjà essayez cette lettre")
+		}
 	}
 }
