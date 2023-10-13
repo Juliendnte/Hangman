@@ -1,4 +1,4 @@
-package Hangman
+package hangman
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func readLines(path string) ([]string, error) {
+func ReadLines(path string) ([]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -23,8 +23,8 @@ func readLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
-func HorrorCoding1() {
-	f, err := readLines("gutenberg.txt")
+func WriteWord() {
+	f, err := ReadLines("gutenberg.txt")
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}

@@ -3,5 +3,5 @@ package main
 import h "Hangman/algo"
 
 func main() {
-	h.HorrorCoding1()
+	h.Count("chenille")
 }
