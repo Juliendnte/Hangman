@@ -20,5 +20,7 @@ func IsInWord(word, s string) bool { // on regarde si c'est dans le mot ou pas
 }
 
 func AfficherLettre(mot, s string) {
+	if IsInWord(mot, s) {
 
+	}
 }
