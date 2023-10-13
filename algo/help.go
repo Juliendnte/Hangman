@@ -26,6 +26,10 @@ func AfficherLettre(mot, s, guess string) {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
+		} else {
+
 		}
+	} else {
+
 	}
 }
