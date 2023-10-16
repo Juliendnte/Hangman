@@ -9,9 +9,7 @@ var guess string
 func Count(m string) string {
 	for n := 0; n < len(m); n++ {
 		guess += "_ "
-		fmt.Printf("_ ")
 	}
-	fmt.Println("")
 	return guess
 }
 
@@ -40,7 +38,7 @@ func TransformSlice(s []string) string {
 	return str
 }
 
-func AfficherLettre(mot, s, guess string, nb int) string {
+func AfficherLettre(mot, s, guess string, nb int) (string, int) {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
@@ -61,7 +59,7 @@ func AfficherLettre(mot, s, guess string, nb int) string {
 		Graphisme(nb)
 		nb++
 	}
-	return guess
+	return guess, nb
 }
 
 func TestWord(guess, mot string) bool {
