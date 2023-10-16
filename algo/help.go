@@ -4,8 +4,9 @@ import (
 	"fmt"
 )
 
+var guess string
+
 func Count(m string) string {
-	var guess string
 	for n := 0; n < len(m); n++ {
 		guess += "_ "
 		fmt.Printf("_ ")
@@ -39,7 +40,7 @@ func TransformSlice(s []string) string {
 	return str
 }
 
-func AfficherLettre(mot, s, guess string) {
+func AfficherLettre(mot, s, guess string, nb int) string {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
@@ -54,8 +55,21 @@ func AfficherLettre(mot, s, guess string) {
 					fmt.Print(string(guess[i*2]), " ")
 				}
 			}
+			fmt.Print("\n")
 		}
 	} else {
-		Graphisme(1)
+		Graphisme(nb)
+		nb++
 	}
+	return guess
+}
+
+func TestWord(guess, mot string) bool {
+	if mot == guess {
+		fmt.Println("Vous avez trouvé le mot")
+		win = true
+	} else {
+		fmt.Println("Ce n'est pas le bon mot")
+	}
+	return win
 }
