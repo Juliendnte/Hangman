@@ -47,7 +47,16 @@ func IsInList(s string, lst []string) bool {
 	return false
 }
 
-func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []string) {
+func IsUnderscore(s string) bool {
+	for _, c := range s {
+		if string(c) == "_" {
+			return false
+		}
+	}
+	return true
+}
+
+func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []string, bool) {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
@@ -67,15 +76,16 @@ func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []
 	} else {
 		if IsInList(s, lst) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
-			return guess, nb, lst
+			return guess, nb, lst, false
 		}
 		lst = append(lst, s)
-		if Graphisme(nb) {
-			fmt.Println("Le mot était ", mot)
-		}
 		nb++
+		Graphisme(nb)
 	}
-	return guess, nb, lst
+	if IsUnderscore(guess) {
+		return guess, nb, lst, true
+	}
+	return guess, nb, lst, false
 }
 
 func TestWord(guess, mot string, nb int) (bool, int) {
@@ -85,6 +95,16 @@ func TestWord(guess, mot string, nb int) (bool, int) {
 	} else {
 		nb += 2
 		fmt.Println("Ce n'est pas le bon mot")
+		Graphisme(nb)
 	}
 	return win, nb
+}
+
+func Equalizeprint(s string) {
+	spaced := ""
+	for len(s)/2+len(spaced) < 95 {
+		spaced += " "
+	}
+	spaced += s
+	fmt.Println(spaced)
 }

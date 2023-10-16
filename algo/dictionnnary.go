@@ -26,8 +26,8 @@ func ReadLines(path string) ([]string, error) {
 	return lines, scanner.Err()
 }
 
-func WriteWord() string {
-	f, err := ReadLines("gutenberg.txt")
+func WriteWord(path string) string {
+	f, err := ReadLines(path)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
@@ -36,28 +36,85 @@ func WriteWord() string {
 }
 
 func Menu() {
-	fmt.Println("Bienvenue au jeu du pendue")
-	var answer int
-	gs := WriteWord()
-	guess = Count(gs)
+	var val int
+	var answer string
+	var gs string
+	var test string
 	var lst []string
-	count := 1
-	fmt.Println("Voici le mot que tu dois devinez ", guess)
-	for !win || count < 11 {
-		fmt.Println("1-Voulez-vous devinez le mot")
-		fmt.Println("2-Voulez-vous devinez une lettre")
-		fmt.Scanln(&answer)
+	Equalizeprint("Bienvenue au jeu du pendu")
+	Equalizeprint("Sur quel mode veux-tu jouer au mode")
+	fmt.Print("\n\n\n\n")
+	for i := 3; i < 11; i++ {
+		fmt.Println("•", i-2, " Mode ", i, " lettres")
+	}
+	fmt.Println("•9 Mode 10 lettre ou plus")
+	fmt.Println("•10 Mode anglais")
+	fmt.Println("•11 Mode difficile")
+	fmt.Println("•12 Mode impossible")
+	fmt.Scanln(&val)
+	fmt.Print("\033[H\033[2J")
+	switch val {
+	case 1:
+		gs = WriteWord("mot3lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 3 lettres")
+	case 2:
+		gs = WriteWord("mot4lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 4 lettres")
+	case 3:
+		gs = WriteWord("mot5lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 5 lettres")
+	case 4:
+		gs = WriteWord("mot6lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 6 lettres")
+	case 5:
+		gs = WriteWord("mot7lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 7 lettres")
+	case 6:
+		gs = WriteWord("mot8lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 8 lettres")
+	case 7:
+		gs = WriteWord("mot9lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 9 lettres")
+	case 8:
+		gs = WriteWord("mot10lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 10 lettres")
+	case 9:
+		gs = WriteWord("mot101112lettres.txt")
+		Equalizeprint("Bienvenue dans le mode 10 lettres ou plus")
+	case 10:
+		gs = WriteWord("motpenduanglais.txt")
+		Equalizeprint("Welcome to the english version")
+	case 11:
+		gs = WriteWord("multilettres.txt")
+		Equalizeprint("Bienvenue dans le mode difficile")
+	case 12:
+		gs = WriteWord("gutenberg.txt")
+		Equalizeprint("Bienvenue dans le mode impossible")
+	}
+	guess := Count(gs)
+	count := 0
+	fmt.Println("Voici le mot que tu dois deviner : ", guess)
+	for !win {
+		if count > 8 {
+			fmt.Println("Le mot était ", gs)
+			return
+		}
+		fmt.Println("1-Veux-tu deviner le mot")
+		fmt.Println("2-Veux-tu deviner une lettre")
+		fmt.Scan(&answer)
 		switch answer {
-		case 1:
-			fmt.Println("Rentrez le mot que vous voulez testez")
-			var test string
-			fmt.Scanln(&test)
+		case "1":
+			fmt.Println("\nRentrez le mot que vous voulez tester")
+			fmt.Scan(&test)
 			win, count = TestWord(gs, test, count)
-		case 2:
-			var test string
-			fmt.Println("Rentrez la lettre que vous voulez testez")
-			fmt.Scanln(&test)
-			guess, count, lst = AfficherLettre(gs, test, guess, count, lst)
+		case "2":
+			fmt.Println("\nRentrez la lettre que vous voulez tester")
+			fmt.Scan(&test)
+			guess, count, lst, win = AfficherLettre(gs, test, guess, count, lst)
+		default:
+			fmt.Println("No Comprendo")
+			continue
 		}
 	}
+	fmt.Println("Vous avez réussi")
 }

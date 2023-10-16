@@ -7,10 +7,9 @@ import (
 	"os"
 )
 
-func Graphisme(nb int) bool {
-	if nb == 11 {
-		fmt.Println("Vous avez perdu")
-		return true
+func Graphisme(nb int) {
+	if nb > 9 {
+		return
 	}
 	file, err := os.Open("hangman(2).txt")
 	if err != nil {
@@ -24,9 +23,9 @@ func Graphisme(nb int) bool {
 			lines = append(lines, scanner.Text())
 		}
 	}
-	set := nb*10 + 9
-	for i := 10*nb - 1; i < set; i++ {
+	set := nb * 10
+	fmt.Println("ҳ̸  Mauvaise lettre")
+	for i := 10 * (nb - 1); i < set; i++ {
 		fmt.Println(lines[i])
 	}
-	return false
 }
