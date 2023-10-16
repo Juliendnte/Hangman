@@ -333381,7 +333381,7 @@ visassiez
 visassions
 visât
 visâtes
-vis-à-vis
+vis-a-vis
 viscache
 viscaches
 viscéral
@@ -334178,7 +334178,6 @@ voie
 voient
 voies
 voila
-voilà
 voilage
 voilages
 voilai

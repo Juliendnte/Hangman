@@ -1,88 +1,32 @@
 package hangman
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+)
 
-func Graphisme(nb int) {
-	switch nb {
-	case 1:
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Println(" ")
-		fmt.Println("=========")
-	case 2:
-
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("  =========")
-	case 3:
-		fmt.Println("		+---+ ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("		|  ")
-		fmt.Println("  =========")
-	case 4:
-		fmt.Println("		+---+ ")
-		fmt.Println("		|   |  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 5:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 6:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 7:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("	   /|   |  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 8:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("	   /|\\  |  ")
-		fmt.Println("			|  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 9:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("	   /|\\  |  ")
-		fmt.Println("	   /    |  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
-	case 10:
-		fmt.Println("		+---+  ")
-		fmt.Println("		|   |  ")
-		fmt.Println("		O   |  ")
-		fmt.Println("	   /|\\  |  ")
-		fmt.Println("	   / \\  |  ")
-		fmt.Println("			|  ")
-		fmt.Println("	  =========")
+func Graphisme(nb int) bool {
+	if nb == 11 {
+		fmt.Println("Vous avez perdu")
+		return true
 	}
+	file, err := os.Open("hangman(2).txt")
+	if err != nil {
+		log.Fatalf("Error: %s", err)
+	}
+	defer file.Close()
+	var lines []string
+	for i := 0; i < 7; i++ {
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+			lines = append(lines, scanner.Text())
+		}
+	}
+	set := nb*10 + 9
+	for i := 10*nb - 1; i < set; i++ {
+		fmt.Println(lines[i])
+	}
+	return false
 }

@@ -40,9 +40,10 @@ func Menu() {
 	var answer int
 	gs := WriteWord()
 	guess = Count(gs)
+	var lst []string
 	count := 1
-	fmt.Println("Voici le mot que tu dois devinez", guess)
-	for !win {
+	fmt.Println("Voici le mot que tu dois devinez ", guess)
+	for !win || count < 11 {
 		fmt.Println("1-Voulez-vous devinez le mot")
 		fmt.Println("2-Voulez-vous devinez une lettre")
 		fmt.Scanln(&answer)
@@ -51,12 +52,12 @@ func Menu() {
 			fmt.Println("Rentrez le mot que vous voulez testez")
 			var test string
 			fmt.Scanln(&test)
-			TestWord(gs, test)
+			win, count = TestWord(gs, test, count)
 		case 2:
 			var test string
 			fmt.Println("Rentrez la lettre que vous voulez testez")
 			fmt.Scanln(&test)
-			guess, count = AfficherLettre(gs, test, guess, count)
+			guess, count, lst = AfficherLettre(gs, test, guess, count, lst)
 		}
 	}
 }

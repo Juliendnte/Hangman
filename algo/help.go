@@ -38,7 +38,16 @@ func TransformSlice(s []string) string {
 	return str
 }
 
-func AfficherLettre(mot, s, guess string, nb int) (string, int) {
+func IsInList(s string, lst []string) bool {
+	for _, c := range lst {
+		if string(c) == s {
+			return true
+		}
+	}
+	return false
+}
+
+func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []string) {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
@@ -56,18 +65,26 @@ func AfficherLettre(mot, s, guess string, nb int) (string, int) {
 			fmt.Print("\n")
 		}
 	} else {
-		Graphisme(nb)
+		if IsInList(s, lst) {
+			fmt.Println("Vous avez déjà essayez cette lettre")
+			return guess, nb, lst
+		}
+		lst = append(lst, s)
+		if Graphisme(nb) {
+			fmt.Println("Le mot était ", mot)
+		}
 		nb++
 	}
-	return guess, nb
+	return guess, nb, lst
 }
 
-func TestWord(guess, mot string) bool {
+func TestWord(guess, mot string, nb int) (bool, int) {
 	if mot == guess {
 		fmt.Println("Vous avez trouvé le mot")
 		win = true
 	} else {
+		nb += 2
 		fmt.Println("Ce n'est pas le bon mot")
 	}
-	return win
+	return win, nb
 }
