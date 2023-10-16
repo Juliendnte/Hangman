@@ -8,6 +8,9 @@ import (
 	"os"
 )
 
+var nb int = 1
+var win bool
+
 func ReadLines(path string) ([]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -30,4 +33,19 @@ func WriteWord() {
 	}
 	ale := rand.Intn(len(f) - 1)
 	fmt.Println(f[ale])
+}
+
+func Menu() {
+	fmt.Println("Bienvenue au jeu du pendue")
+	var answer int
+	for win {
+		fmt.Println("1-Voulez-vous devinez le mot")
+		fmt.Println("2-Voulez-vous devinez une lettre")
+		fmt.Scanln(&answer)
+		switch answer {
+		case 1:
+
+		case 2:
+		}
+	}
 }
