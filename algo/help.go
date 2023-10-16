@@ -45,7 +45,7 @@ func AfficherLettre(mot, s, guess string, nb int) string {
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
 		} else {
-			for _, t := range mot {
+			for i, t := range mot {
 				if string(t) == s {
 					slc := TransformString(guess)
 					slc[i*2] = s
