@@ -8,9 +8,6 @@ import (
 )
 
 func Graphisme(nb int) {
-	if nb > 9 {
-		return
-	}
 	file, err := os.Open("hangman(2).txt")
 	if err != nil {
 		log.Fatalf("Error: %s", err)

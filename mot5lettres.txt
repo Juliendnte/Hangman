@@ -1,9 +1,8 @@
-Accès
+Acces
 Aimer
-Aloès
 Assez
 Avion
-Awalé
+Awale
 Balai
 Banjo
 Barbe
@@ -14,9 +13,9 @@ Cache
 Capot
 Carte
 Chien
-Crâne
+Crane
 Cycle
-Ébène
+Ebene
 Essai
 Gifle
 Honni
@@ -28,7 +27,7 @@ Maman
 Moult
 Noeud
 Ortie
-Pêche
+Peche
 Poire
 Pomme
 Poste

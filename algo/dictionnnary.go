@@ -42,15 +42,15 @@ func Menu() {
 	var test string
 	var lst []string
 	Equalizeprint("Bienvenue au jeu du pendu")
-	Equalizeprint("Sur quel mode veux-tu jouer au mode")
+	Equalizeprint("Sur quel mode veux-tu jouer au jeu")
 	fmt.Print("\n\n\n\n")
 	for i := 3; i < 11; i++ {
-		fmt.Println("•", i-2, " Mode ", i, " lettres")
+		fmt.Println("•/", i-2, "Mode ", i, " lettres")
 	}
-	fmt.Println("•9 Mode 10 lettre ou plus")
-	fmt.Println("•10 Mode anglais")
-	fmt.Println("•11 Mode difficile")
-	fmt.Println("•12 Mode impossible")
+	fmt.Println("•/ 9 Mode 10 lettre ou plus")
+	fmt.Println("•/ 10 Mode anglais")
+	fmt.Println("•/ 11 Mode difficile")
+	fmt.Println("•/ 12 Mode impossible")
 	fmt.Scanln(&val)
 	fmt.Print("\033[H\033[2J")
 	switch val {
@@ -91,11 +91,12 @@ func Menu() {
 		gs = WriteWord("gutenberg.txt")
 		Equalizeprint("Bienvenue dans le mode impossible")
 	}
+	gs = ToLower(gs)
 	guess := Count(gs)
 	count := 0
 	fmt.Println("Voici le mot que tu dois deviner : ", guess)
 	for !win {
-		if count > 8 {
+		if count > 9 {
 			fmt.Println("Le mot était ", gs)
 			return
 		}
@@ -117,4 +118,5 @@ func Menu() {
 		}
 	}
 	fmt.Println("Vous avez réussi")
+
 }

@@ -55,7 +55,17 @@ func IsUnderscore(s string) bool {
 	}
 	return true
 }
-
+func ToLower(s string) string {
+	var listf string
+	for _, c := range s {
+		if c > 64 && c < 91 {
+			listf = listf + string(c+32)
+		} else {
+			listf = listf + string(c)
+		}
+	}
+	return listf
+}
 func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []string, bool) {
 	if IsInWord(mot, s) {
 		if IsInWord(guess, s) {
@@ -72,6 +82,9 @@ func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []
 				}
 			}
 			fmt.Print("\n")
+			if IsUnderscore(guess) {
+				return guess, nb, lst, true
+			}
 		}
 	} else {
 		if IsInList(s, lst) {
@@ -81,9 +94,6 @@ func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []
 		lst = append(lst, s)
 		nb++
 		Graphisme(nb)
-	}
-	if IsUnderscore(guess) {
-		return guess, nb, lst, true
 	}
 	return guess, nb, lst, false
 }

@@ -1,6 +1,6 @@
-Âtre
+Atre
 Beau
-Bête
+Bete
 Boxe
 Brun
 Cerf
@@ -26,8 +26,8 @@ Long
 Lune
 Lynx
 Mine
-Mûre
-Ouïe
+Mure
+Ouie
 Ours
 Pion
 Rhum
