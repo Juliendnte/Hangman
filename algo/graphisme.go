@@ -8,6 +8,9 @@ import (
 )
 
 func Graphisme(nb int) {
+	if nb == 0 {
+		nb = 1
+	}
 	file, err := os.Open("hangman(2).txt")
 	if err != nil {
 		log.Fatalf("Error: %s", err)
@@ -21,7 +24,6 @@ func Graphisme(nb int) {
 		}
 	}
 	set := nb * 10
-	fmt.Println("ҳ̸  Mauvaise lettre")
 	for i := 10 * (nb - 1); i < set; i++ {
 		fmt.Println(lines[i])
 	}

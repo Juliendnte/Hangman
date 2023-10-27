@@ -55,6 +55,7 @@ func IsUnderscore(s string) bool {
 	}
 	return true
 }
+
 func ToLower(s string) string {
 	var listf string
 	for _, c := range s {
@@ -66,8 +67,18 @@ func ToLower(s string) string {
 	}
 	return listf
 }
-func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []string, bool) {
+func printlist(s []string) {
+	fmt.Println("Vous avez testé ")
+	for _, c := range s {
+		fmt.Print(string(c), " ")
+	}
+	fmt.Println("\n\n\n")
+}
+func AfficherLettre(mot, s, guess string, nb int, lst []string, prt string) (string, int, []string, bool) {
 	if IsInWord(mot, s) {
+		fmt.Print("\033[H\033[2J")
+		Equalizeprint(prt)
+		Graphisme(nb)
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
 		} else {
@@ -76,23 +87,23 @@ func AfficherLettre(mot, s, guess string, nb int, lst []string) (string, int, []
 					slc := TransformString(guess)
 					slc[i*2] = s
 					guess = TransformSlice(slc)
-					fmt.Print(s, " ")
-				} else {
-					fmt.Print(string(guess[i*2]), " ")
 				}
 			}
-			fmt.Print("\n")
 			if IsUnderscore(guess) {
 				return guess, nb, lst, true
 			}
 		}
 	} else {
+		fmt.Print("\033[H\033[2J")
+		Equalizeprint(prt)
 		if IsInList(s, lst) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
 			return guess, nb, lst, false
 		}
 		lst = append(lst, s)
 		nb++
+		fmt.Println("ҳ̸  Mauvaise lettre")
+		printlist(lst)
 		Graphisme(nb)
 	}
 	return guess, nb, lst, false

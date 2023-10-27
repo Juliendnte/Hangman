@@ -41,6 +41,7 @@ func Menu() {
 	var gs string
 	var test string
 	var lst []string
+	var prt string
 	Equalizeprint("Bienvenue au jeu du pendu")
 	Equalizeprint("Sur quel mode veux-tu jouer au jeu")
 	fmt.Print("\n\n\n\n")
@@ -56,46 +57,48 @@ func Menu() {
 	switch val {
 	case 1:
 		gs = WriteWord("mot3lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 3 lettres")
+		prt = "Je suis julien et je suis nul car je laisse mon pc déverrouillé"
 	case 2:
 		gs = WriteWord("mot4lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 4 lettres")
+		prt = "Bienvenue dans le mode 4 lettres"
 	case 3:
 		gs = WriteWord("mot5lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 5 lettres")
+		prt = "Bienvenue dans le mode 5 lettres"
 	case 4:
 		gs = WriteWord("mot6lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 6 lettres")
+		prt = "Bienvenue dans le mode 6 lettres"
 	case 5:
 		gs = WriteWord("mot7lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 7 lettres")
+		prt = "Bienvenue dans le mode 7 lettres"
 	case 6:
 		gs = WriteWord("mot8lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 8 lettres")
+		prt = "Bienvenue dans le mode 8 lettres"
 	case 7:
 		gs = WriteWord("mot9lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 9 lettres")
+		prt = "Bienvenue dans le mode 9 lettres"
 	case 8:
 		gs = WriteWord("mot10lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 10 lettres")
+		prt = "Bienvenue dans le mode 10 lettres"
 	case 9:
 		gs = WriteWord("mot101112lettres.txt")
-		Equalizeprint("Bienvenue dans le mode 10 lettres ou plus")
+		prt = "Bienvenue dans le mode 10 lettres ou plus"
 	case 10:
 		gs = WriteWord("motpenduanglais.txt")
-		Equalizeprint("Welcome to the english version")
+		prt = "Welcome to the english version"
 	case 11:
 		gs = WriteWord("multilettres.txt")
-		Equalizeprint("Bienvenue dans le mode difficile")
+		prt = "Bienvenue dans le mode difficile"
 	case 12:
 		gs = WriteWord("gutenberg.txt")
-		Equalizeprint("Bienvenue dans le mode impossible")
+		prt = "Bienvenue dans le mode impossible"
 	}
 	gs = ToLower(gs)
 	guess := Count(gs)
 	count := 0
-	fmt.Println("Voici le mot que tu dois deviner : ", guess)
+	Equalizeprint(prt)
 	for !win {
+		fmt.Print("\n\n\n")
+		fmt.Println("Le mot que tu dois deviner : ", guess)
 		if count > 9 {
 			fmt.Println("Le mot était ", gs)
 			return
@@ -105,18 +108,24 @@ func Menu() {
 		fmt.Scan(&answer)
 		switch answer {
 		case "1":
+			fmt.Print("\033[H\033[2J")
+			Equalizeprint(prt)
 			fmt.Println("\nRentrez le mot que vous voulez tester")
 			fmt.Scan(&test)
 			win, count = TestWord(gs, test, count)
 		case "2":
+			fmt.Print("\033[H\033[2J")
+			Equalizeprint(prt)
 			fmt.Println("\nRentrez la lettre que vous voulez tester")
 			fmt.Scan(&test)
-			guess, count, lst, win = AfficherLettre(gs, test, guess, count, lst)
+			guess, count, lst, win = AfficherLettre(gs, test, guess, count, lst, prt)
 		default:
 			fmt.Println("No Comprendo")
 			continue
 		}
+
 	}
+	fmt.Println("Le mot était ", gs)
 	fmt.Println("Vous avez réussi")
 
 }
