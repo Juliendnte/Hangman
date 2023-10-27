@@ -31,7 +31,7 @@ func WriteWord(path string) string {
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}
-	ale := rand.Intn(len(f) - 1)
+	ale := rand.Intn(len(f))
 	return f[ale]
 }
 
