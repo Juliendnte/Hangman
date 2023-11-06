@@ -56,40 +56,40 @@ func Menu() {
 	fmt.Print("\033[H\033[2J")
 	switch val {
 	case 1:
-		gs = WriteWord("mot3lettres.txt")
+		gs = WriteWord("mot/mot3lettres.txt")
 		prt = "Bienvenue dans le mode 3 lettres"
 	case 2:
-		gs = WriteWord("mot4lettres.txt")
+		gs = WriteWord("mot/mot4lettres.txt")
 		prt = "Bienvenue dans le mode 4 lettres"
 	case 3:
-		gs = WriteWord("mot5lettres.txt")
+		gs = WriteWord("mot/mot5lettres.txt")
 		prt = "Bienvenue dans le mode 5 lettres"
 	case 4:
-		gs = WriteWord("mot6lettres.txt")
+		gs = WriteWord("mot/mot6lettres.txt")
 		prt = "Bienvenue dans le mode 6 lettres"
 	case 5:
-		gs = WriteWord("mot7lettres.txt")
+		gs = WriteWord("mot/mot7lettres.txt")
 		prt = "Bienvenue dans le mode 7 lettres"
 	case 6:
-		gs = WriteWord("mot8lettres.txt")
+		gs = WriteWord("mot/mot8lettres.txt")
 		prt = "Bienvenue dans le mode 8 lettres"
 	case 7:
-		gs = WriteWord("mot9lettres.txt")
+		gs = WriteWord("mot/mot9lettres.txt")
 		prt = "Bienvenue dans le mode 9 lettres"
 	case 8:
-		gs = WriteWord("mot10lettres.txt")
+		gs = WriteWord("mot/mot10lettres.txt")
 		prt = "Bienvenue dans le mode 10 lettres"
 	case 9:
-		gs = WriteWord("mot101112lettres.txt")
+		gs = WriteWord("mot/mot101112lettres.txt")
 		prt = "Bienvenue dans le mode 10 lettres ou plus"
 	case 10:
-		gs = WriteWord("motpenduanglais.txt")
+		gs = WriteWord("mot/motpenduanglais.txt")
 		prt = "Welcome to the english version"
 	case 11:
-		gs = WriteWord("multilettres.txt")
+		gs = WriteWord("mot/multilettres.txt")
 		prt = "Bienvenue dans le mode difficile"
 	case 12:
-		gs = WriteWord("gutenberg.txt")
+		gs = WriteWord("mot/gutenberg.txt")
 		prt = "Bienvenue dans le mode impossible"
 	}
 	gs = ToLower(gs)
