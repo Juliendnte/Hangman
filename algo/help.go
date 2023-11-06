@@ -74,6 +74,7 @@ func printlist(s []string) {
 	}
 	fmt.Print("\n\n\n\n")
 }
+
 func AfficherLettre(mot, s, guess string, nb int, lst []string, prt string) (string, int, []string, bool) {
 	if IsInWord(mot, s) {
 		fmt.Print("\033[H\033[2J")
