@@ -72,7 +72,7 @@ func printlist(s []string) {
 	for _, c := range s {
 		fmt.Print(string(c), " ")
 	}
-	fmt.Println("\n\n\n")
+	fmt.Print("\n\n\n\n")
 }
 func AfficherLettre(mot, s, guess string, nb int, lst []string, prt string) (string, int, []string, bool) {
 	if IsInWord(mot, s) {
