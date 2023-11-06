@@ -42,6 +42,7 @@ func Menu() {
 	var test string
 	var lst []string
 	var prt string
+	var ind int = 2
 	Equalizeprint("Bienvenue au jeu du pendu")
 	Equalizeprint("Sur quel mode veux-tu jouer au jeu")
 	fmt.Print("\n\n\n\n")
@@ -105,12 +106,14 @@ func Menu() {
 		}
 		fmt.Println("1-Veux-tu deviner le mot")
 		fmt.Println("2-Veux-tu deviner une lettre")
+		fmt.Println("3-Veux-tu utiliser un indice ")
 		fmt.Scan(&answer)
 		switch answer {
 		case "1":
 			fmt.Print("\033[H\033[2J")
 			Equalizeprint(prt)
 			fmt.Println("\nRentrez le mot que vous voulez tester")
+			fmt.Println(guess)
 			fmt.Scan(&test)
 			win, count = TestWord(gs, test, count)
 		case "2":
@@ -119,6 +122,15 @@ func Menu() {
 			fmt.Println("\nRentrez la lettre que vous voulez tester")
 			fmt.Scan(&test)
 			guess, count, lst, win = AfficherLettre(gs, test, guess, count, lst, prt)
+		case "3":
+			if ind > 0 {
+				ind--
+				fmt.Println("Vous avez utiliser un indice il vous en reste ", ind)
+				guess, count, lst, win = indice(gs, letterAleatory(guess, gs, lst), guess, count, lst)
+			} else {
+				fmt.Println("Vous n'avez plus d'indice")
+			}
+
 		default:
 			fmt.Println("No Comprendo")
 			continue

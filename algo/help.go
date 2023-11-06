@@ -2,6 +2,7 @@ package hangman
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 var guess string
@@ -11,15 +12,6 @@ func Count(m string) string {
 		guess += "_ "
 	}
 	return guess
-}
-
-func IsInWord(word, s string) bool { // on regarde si c'est dans le mot ou pas
-	for _, l := range word {
-		if string(l) == s {
-			return true // si ça y est tu peux te le mettre dans le trou
-		}
-	}
-	return false
 }
 
 func TransformString(s string) []string {
@@ -38,22 +30,30 @@ func TransformSlice(s []string) string {
 	return str
 }
 
-func IsInList(s string, lst []string) bool {
-	for _, c := range lst {
-		if string(c) == s {
-			return true
+func indice(mot, s, guess string, nb int, lst []string) (string, int, []string, bool) {
+	lst = append(lst, s)
+	for i, t := range mot {
+		if string(t) == s {
+			slc := TransformString(guess)
+			slc[i*2] = s
+			guess = TransformSlice(slc)
 		}
 	}
-	return false
+	if IsUnderscore(guess) {
+		return guess, nb, lst, true
+	}
+	return guess, nb, lst, false
 }
 
-func IsUnderscore(s string) bool {
-	for _, c := range s {
-		if string(c) == "_" {
-			return false
-		}
+func letterAleatory(guess, mot string, lst []string) string {
+	var w string
+	var ale int
+	ale = rand.Intn(len(mot))
+	w = string(mot[ale])
+	if IsInList(w, lst) {
+		w = letterAleatory(guess, mot, lst)
 	}
-	return true
+	return w
 }
 
 func ToLower(s string) string {
@@ -67,6 +67,7 @@ func ToLower(s string) string {
 	}
 	return listf
 }
+
 func printlist(s []string) {
 	fmt.Println("Vous avez testé ")
 	for _, c := range s {
@@ -83,6 +84,7 @@ func AfficherLettre(mot, s, guess string, nb int, lst []string, prt string) (str
 		if IsInWord(guess, s) {
 			fmt.Println("Vous avez déjà essayez cette lettre")
 		} else {
+			lst = append(lst, s)
 			for i, t := range mot {
 				if string(t) == s {
 					slc := TransformString(guess)
@@ -129,4 +131,30 @@ func Equalizeprint(s string) {
 	}
 	spaced += s
 	fmt.Println(spaced)
+}
+
+func IsInList(s string, lst []string) bool {
+	for _, c := range lst {
+		if string(c) == s {
+			return true
+		}
+	}
+	return false
+}
+
+func IsUnderscore(s string) bool {
+	for _, c := range s {
+		if string(c) == "_" {
+			return false
+		}
+	}
+	return true
+}
+func IsInWord(word, s string) bool { // on regarde si c'est dans le mot ou pas
+	for _, l := range word {
+		if string(l) == s {
+			return true // si ça y est tu peux te le mettre dans le trou
+		}
+	}
+	return false
 }
