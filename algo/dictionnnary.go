@@ -57,7 +57,7 @@ func Menu() {
 	switch val {
 	case 1:
 		gs = WriteWord("mot3lettres.txt")
-		prt = "Je suis julien et je suis nul car je laisse mon pc déverrouillé"
+		prt = "Bienvenue dans le mode 3 lettres"
 	case 2:
 		gs = WriteWord("mot4lettres.txt")
 		prt = "Bienvenue dans le mode 4 lettres"
